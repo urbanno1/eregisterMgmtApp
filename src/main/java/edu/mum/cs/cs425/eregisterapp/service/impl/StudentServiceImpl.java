@@ -7,27 +7,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 
+@Service
 public class StudentServiceImpl implements StudentService {
-
-    private StudentRepository repository;
     @Autowired
-   public StudentServiceImpl(StudentRepository repository) {
-        this.repository = repository;
-    }
+    private StudentRepository repository;
 
     @Override
     public Student saveStudent(Student student) {
-        return null;
+        return repository.save(student);
     }
 
     @Override
     public Iterable<Student> getListOfStudent() {
-        return repository.findAll(Sort.by("studentName"));
+        return repository.findAll(Sort.by("firstName"));
     }
 
     @Override
     public Page<Student> getListOfStudent(int pageNo) {
-        return  repository.findAll(PageRequest.of(pageNo, 2, Sort.by("studentName")));
+        return  repository.findAll(PageRequest.of(pageNo, 2, Sort.by("firstName")));
     }
 }
