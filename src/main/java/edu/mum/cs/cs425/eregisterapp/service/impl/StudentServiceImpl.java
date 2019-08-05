@@ -25,7 +25,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Page<Student> getListOfStudent(int pageNo) {
+    public Page<Student> getAllStudentsPaged(int pageNo) {
         return  repository.findAll(PageRequest.of(pageNo, 2, Sort.by("firstName")));
     }
 }

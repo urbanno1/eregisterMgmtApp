@@ -9,5 +9,5 @@ public interface StudentService {
 
     public  abstract Student saveStudent(Student student);
     public  abstract Iterable<Student> getListOfStudent();
-    public  abstract Page<Student> getListOfStudent(int pageNo);
+    public  abstract Page<Student> getAllStudentsPaged(int pageNo);
 }

@@ -8,6 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -40,9 +41,10 @@ public class StudentController {
     }
 
     @GetMapping(value = {"/eregister/student/list", "/eregister/student"})
-    public ModelAndView displayListOfStudent() {
+    public ModelAndView displayListOfStudent(@RequestParam(defaultValue = "0") int pageNo) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("students", service.getListOfStudent());
+        modelAndView.addObject("students", service.getAllStudentsPaged(pageNo));
+        modelAndView.addObject("currentPageNo", pageNo);
         modelAndView.setViewName("student/student-list");
         return modelAndView;
     }
