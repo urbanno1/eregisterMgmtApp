@@ -57,10 +57,12 @@
         <br/>
     </div>
     <div>
-        <form class="form-inline my-2 my-lg-0" style="float:right">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search">
+        <form class="form-inline my-2 my-lg-0" method="get" action="/eregister/student/search" style="float:right">
+            <input id="pageNo" type="hidden" name="pageNo" th:value="${currentPageNo}">
+            <input class="form-control mr-sm-2" id="searchString" name="searchString" th:value="${searchString}" type="text" placeholder="Search">
             <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
         </form>
+        <br/>
     </div>
 
     <p>&nbsp;</p>
@@ -76,6 +78,8 @@
                 <th scope="col">Enrollment Date</th>
                 <th scope="col">CGPA</th>
                 <th scope="col">isInternational</th>
+                <th>&nbsp;</th>
+                <th>&nbsp;</th>
             </tr>
             </thead>
             <tbody>
@@ -89,10 +93,10 @@
                 <td th:text="${student.cgpa}"></td>
                 <td th:text="${student.isInternational}"></td>
                 <td><a
-                        th:href="@{'/elibrary/book/edit/{bookId}'(studentId=${student.studentId})}">Edit</a></td>
+                        th:href="@{'/eregister/student/edit/{studentId}'(studentId=${student.studentId})}">Edit</a></td>
                 <td><a data-toggle="modal"
                        data-target="#confirmDeleteStudentModal"
-                       th:href="@{'/elibrary/book/delete/' + ${student.studentId}}">Delete</a>
+                       th:href="@{'/elibrary/Student/delete/' + ${student.studentId}}">Delete</a>
                     <!--                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">-->
                     <!--                            Launch demo modal--> <!--                        </button>-->
                 </td>
